@@ -100,7 +100,7 @@ class Client
 	 */
 	public function get($url, $params = array())
 	{
-		return $this->request(self::GET, $url, $params);
+		return $this->request(Request::GET, $url, $params);
 	}
 
 	/**
@@ -113,7 +113,7 @@ class Client
 	 */
 	public function post($url, $params = array())
 	{
-		return $this->request(self::POST, $url, $params);
+		return $this->request(Request::POST, $url, $params);
 	}
 
 	/**
@@ -126,7 +126,7 @@ class Client
 	 */
 	public function put($url, $params = array())
 	{
-		return $this->request(self::PUT, $url, $params);
+		return $this->request(Request::PUT, $url, $params);
 	}
 
 	/**
@@ -138,7 +138,7 @@ class Client
 	 */
 	public function delete($url)
 	{
-		return $this->request(self::DELETE, $url);
+		return $this->request(Request::DELETE, $url);
 	}
 
 	/**
