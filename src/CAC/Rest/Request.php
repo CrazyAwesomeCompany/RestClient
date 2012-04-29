@@ -1,7 +1,14 @@
 <?php
+/*
+ * This file is part of the Crazy Awesome Company package.
+*
+* (c) Nick de Groot <nick@crazyawesomecompany.com>
+*
+* For the full copyright and license information, please view the LICENSE
+* file that was distributed with this source code.
+*/
 
 namespace CAC\Rest;
-
 
 class Request
 {
@@ -22,7 +29,7 @@ class Request
         'X-CAC-REQUEST' => 'CAC Rest Client'
     );
 
-	/**
+    /**
      * @return the $method
      */
     public function getMethod ()
@@ -30,7 +37,7 @@ class Request
         return $this->method;
     }
 
-	/**
+    /**
      * @return the $url
      */
     public function getUrl ()
@@ -38,7 +45,7 @@ class Request
         return $this->url;
     }
 
-	/**
+    /**
      * @return the $parameters
      */
     public function getParameters ()
@@ -46,7 +53,7 @@ class Request
         return $this->parameters;
     }
 
-	/**
+    /**
      * @return the $headers
      */
     public function getHeaders ()
@@ -54,7 +61,7 @@ class Request
         return $this->headers;
     }
 
-	/**
+    /**
      * @param field_type $method
      */
     public function setMethod ($method)
@@ -62,7 +69,7 @@ class Request
         $this->method = $method;
     }
 
-	/**
+    /**
      * @param field_type $url
      */
     public function setUrl ($url)
@@ -70,7 +77,7 @@ class Request
         $this->url = $url;
     }
 
-	/**
+    /**
      * @param field_type $parameters
      */
     public function setParameters ($parameters)
@@ -78,7 +85,7 @@ class Request
         $this->parameters = $parameters;
     }
 
-	/**
+    /**
      * @param field_type $headers
      */
     public function setHeaders ($headers)
