@@ -10,6 +10,11 @@
 
 namespace CAC\Rest;
 
+/**
+ * Rest Request Class
+ *
+ * @author Nick de Groot <nick@crazyawesomecompany.com>
+ */
 class Request
 {
 
@@ -18,19 +23,41 @@ class Request
     const PUT = 'PUT';
     const DELETE = 'DELETE';
 
+    /**
+     * Request Method
+     *
+     * @var string
+     */
     private $method;
 
+    /**
+     * Request Url
+     *
+     * @var string
+     */
     private $url;
 
+    /**
+     * Request payload parameters
+     *
+     * @var mixed
+     */
     private $parameters;
 
+    /**
+     * Request headers
+     *
+     * @var array
+     */
     private $headers = array(
         'content-type' => 'application/json',
         'X-CAC-REQUEST' => 'CAC Rest Client'
     );
 
     /**
-     * @return the $method
+     * Get the request method
+     *
+     * @return string
      */
     public function getMethod ()
     {
@@ -38,7 +65,9 @@ class Request
     }
 
     /**
-     * @return the $url
+     * Get the request url
+     *
+     * @return string
      */
     public function getUrl ()
     {
@@ -46,7 +75,9 @@ class Request
     }
 
     /**
-     * @return the $parameters
+     * Get the request payload
+     *
+     * @return mixed
      */
     public function getParameters ()
     {
@@ -54,7 +85,9 @@ class Request
     }
 
     /**
-     * @return the $headers
+     * Get the request headers
+     *
+     * @return array
      */
     public function getHeaders ()
     {
@@ -62,7 +95,9 @@ class Request
     }
 
     /**
-     * @param field_type $method
+     * Set the request method
+     *
+     * @param string $method
      */
     public function setMethod ($method)
     {
@@ -70,7 +105,9 @@ class Request
     }
 
     /**
-     * @param field_type $url
+     * Set the request url
+     *
+     * @param string $url
      */
     public function setUrl ($url)
     {
@@ -78,7 +115,9 @@ class Request
     }
 
     /**
-     * @param field_type $parameters
+     * Set the request payload
+     *
+     * @param mixed $parameters
      */
     public function setParameters ($parameters)
     {
@@ -86,18 +125,25 @@ class Request
     }
 
     /**
-     * @param field_type $headers
+     * Set the request headers
+     *
+     * @param array $headers
      */
     public function setHeaders ($headers)
     {
         $this->headers = $headers;
     }
 
+    /**
+     * Set a request header
+     *
+     * @param string $key   The header name
+     * @param string $value The header value
+     */
     public function setHeader($key, $value)
     {
         $this->headers[$key] = $value;
     }
-
 
     /**
      * Get the request object as a string

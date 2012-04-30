@@ -10,11 +10,12 @@
 
 namespace CAC\Rest\Client;
 
-
+/**
+ * Rest Client Adapter Exception Class
+ *
+ * @author Nick de Groot <nick@crazyawesomecompany.com>
+ */
 class Exception extends \Exception
 {
-
-
-
 
 }

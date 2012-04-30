@@ -10,7 +10,11 @@
 
 namespace CAC\Rest;
 
-
+/**
+ * Rest Response Class
+ *
+ * @author Nick de Groot <nick@crazyawesomecompany.com>
+ */
 class Response
 {
 
@@ -37,7 +41,9 @@ class Response
 
 
     /**
-     * @return the $headers
+     * Get the response headers
+     *
+     * @return array
      */
     public function getHeaders()
     {
@@ -45,7 +51,9 @@ class Response
     }
 
     /**
-     * @return the $responseCode
+     * Get the response code
+     *
+     * @return integer
      */
     public function getResponseCode()
     {
@@ -54,6 +62,8 @@ class Response
 
     /**
      * Check if the response was successful
+     *
+     * @return boolean
      */
     public function isSuccess()
     {
@@ -61,7 +71,9 @@ class Response
     }
 
     /**
-     * @return the $content
+     * Get the response body
+     *
+     * @return string
      */
     public function getContent()
     {
@@ -69,7 +81,9 @@ class Response
     }
 
     /**
-     * @param multitype: $headers
+     * Set the response headers
+     *
+     * @param array $headers
      */
     public function setHeaders($headers)
     {
@@ -88,6 +102,8 @@ class Response
     }
 
     /**
+     * Set the response code
+     *
      * @param integer $responseCode
      */
     public function setResponseCode($responseCode)
@@ -96,6 +112,8 @@ class Response
     }
 
     /**
+     * Set the response body
+     *
      * @param mixed $content
      */
     public function setContent($content)

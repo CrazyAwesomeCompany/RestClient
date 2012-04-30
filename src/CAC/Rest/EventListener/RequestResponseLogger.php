@@ -10,7 +10,6 @@
 
 namespace CAC\Rest\EventListener;
 
-
 use Monolog\Logger;
 
 use CAC\Rest\Events\RestResponseEvent;

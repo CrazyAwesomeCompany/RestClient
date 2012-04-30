@@ -10,11 +10,15 @@
 
 namespace CAC\Rest\Client;
 
-
 use CAC\Rest\Request;
 
 use CAC\Rest\Response;
 
+/**
+ * cUrl Adapter
+ *
+ * @author Nick de Groot <nick@crazyawesomecompany.com>
+ */
 class CurlAdapter extends ClientAdapter
 {
 
@@ -36,9 +40,9 @@ class CurlAdapter extends ClientAdapter
      *
      * @throws Exception When curl operation fails
      *
-     * @see CAC\Rest\Client.ClientAdapter::doRequest()
+     * @see CAC\Rest\Client.ClientAdapter::request()
      */
-    protected function doRequest(Request $request)
+    public function request(Request $request)
     {
         $ch = $this->getClient();
 
@@ -95,6 +99,11 @@ class CurlAdapter extends ClientAdapter
         return $response;
     }
 
+    /**
+     * Get the cUrl handle
+     *
+     * @return resource
+     */
     protected function getClient()
     {
         if (!$this->ch) {
@@ -103,7 +112,5 @@ class CurlAdapter extends ClientAdapter
 
         return $this->ch;
     }
-
-
 
 }
