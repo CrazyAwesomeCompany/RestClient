@@ -1,0 +1,15 @@
+{
+    "name": "cac/rest-client",
+    "description": "Crazy Awesome Rest Client",
+    "autoload": {
+        "psr-0": {
+            "CAC\\Rest": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nick de Groot",
+            "email": "nick@crazyawesomecompany.com"
+        }
+    ]
+}
