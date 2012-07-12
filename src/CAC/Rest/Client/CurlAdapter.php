@@ -51,6 +51,7 @@ class CurlAdapter extends ClientAdapter
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_HEADER, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $request->getMethod());
         curl_setopt($ch, CURLOPT_URL, $request->getUrl());
@@ -59,7 +60,7 @@ class CurlAdapter extends ClientAdapter
             $params = $request->getParameters();
 
             if (is_object($params) || is_array($params)) {
-                $params = $this->encode($params);
+                $params = $this->encode($params, $request->getHeader('content-type'));
             }
 
             curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
@@ -94,7 +95,7 @@ class CurlAdapter extends ClientAdapter
         }
 
         // @todo Decode the content back
-        $response->setContent($this->decode($body));
+        $response->setContent($this->decode($body), $response->getHeader('content-type'));
 
         return $response;
     }

@@ -51,6 +51,22 @@ class Response
     }
 
     /**
+     * Get a single header
+     *
+     * @param string $key The header name
+     *
+     * @return string
+     */
+    public function getHeader($key)
+    {
+        if (array_key_exists($key, $this->headers)) {
+            return $this->headers[$key];
+        }
+
+        return null;
+    }
+
+    /**
      * Get the response code
      *
      * @return integer
@@ -67,7 +83,7 @@ class Response
      */
     public function isSuccess()
     {
-        return floor($this->responseCode / 100) >= 4;
+        return !(floor($this->responseCode / 100) >= 4);
     }
 
     /**

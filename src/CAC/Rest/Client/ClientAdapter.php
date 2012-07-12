@@ -40,9 +40,21 @@ abstract class ClientAdapter
      *
      * @todo Move this to a Encoder
      */
-    private function encode($data)
+    protected function encode($data, $contentType = 'json')
     {
-        return json_encode($data);
+        switch ($contentType) {
+            case 'json':
+            case 'application/json':
+                $data = json_encode($data);
+                break;
+
+            case 'application/x-www-form-urlencoded':
+            default:
+                $data = http_build_query($data);
+                break;
+        }
+
+        return $data;
     }
 
     /**
@@ -54,9 +66,17 @@ abstract class ClientAdapter
      *
      * @todo Move this to a Decoder
      */
-    protected function decode($data)
+    protected function decode($data, $contentType = 'json')
     {
-        return json_decode($data);
+        switch ($contentType) {
+            case 'json':
+            case 'application/json':
+            case 'application/json;charset=utf-8':
+                $data = json_decode($data, true);
+                break;
+        }
+
+        return $data;
     }
 
 }

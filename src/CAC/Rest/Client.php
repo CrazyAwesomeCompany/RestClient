@@ -47,6 +47,13 @@ class Client
     private $dispatcher = null;
 
     /**
+     * Holder for default headers
+     *
+     * @var array
+     */
+    private $defaultHeaders = array();
+
+    /**
      * Constructor
      *
      * @param ClientAdapter $adapter The Rest Client Adapater
@@ -61,13 +68,14 @@ class Client
     /**
      * Perform a request to the server
      *
-     * @param Request|string $method The request object or the request method
-     * @param string         $url    The request url
-     * @param array          $params The parameters
+     * @param Request|string $method  The request object or the request method
+     * @param string         $url     The request url
+     * @param array          $params  The parameters
+     * @param array          $headers The headers to set
      *
      * @return Response
      */
-    public function request($method, $url = null, $params = array())
+    public function request($method, $url = null, $params = array(), $headers = array())
     {
         if (!($method instanceof Request)) {
             $request = new Request();
@@ -76,6 +84,7 @@ class Client
             $url = $this->baseUrl . $url;
             $request->setUrl($url);
             $request->setParameters($params);
+            $request->setHeaders(array_merge($this->defaultHeaders, $headers));
 
         } else {
             $request = $method;
@@ -101,40 +110,43 @@ class Client
     /**
      * Perform a get request to the server
      *
-     * @param string $url    The request url
-     * @param array  $params The request parameters
+     * @param string $url     The request url
+     * @param array  $params  The request parameters
+     * @param array  $headers The headers to set
      *
      * @return Response
      */
-    public function get($url, $params = array())
+    public function get($url, $params = array(), $headers = array())
     {
-        return $this->request(Request::GET, $url, $params);
+        return $this->request(Request::GET, $url, $params, $headers);
     }
 
     /**
      * Perform a post request to the server
      *
-     * @param string $url    The request url
-     * @param array  $params The request parameters
+     * @param string $url     The request url
+     * @param array  $params  The request parameters
+     * @param array  $headers The headers to set
      *
      * @return Response
      */
-    public function post($url, $params = array())
+    public function post($url, $params = array(), $headers = array())
     {
-        return $this->request(Request::POST, $url, $params);
+        return $this->request(Request::POST, $url, $params, $headers);
     }
 
     /**
      * Perform a put request to the server
      *
-     * @param string $url    The request url
-     * @param array  $params The request parameters
+     * @param string $url     The request url
+     * @param array  $params  The request parameters
+     * @param array  $headers The headers to set
      *
      * @return Response
      */
-    public function put($url, $params = array())
+    public function put($url, $params = array(), $headers = array())
     {
-        return $this->request(Request::PUT, $url, $params);
+        return $this->request(Request::PUT, $url, $params, $headers);
     }
 
     /**
@@ -147,6 +159,17 @@ class Client
     public function delete($url)
     {
         return $this->request(Request::DELETE, $url);
+    }
+
+    /**
+     * Set a default header
+     *
+     * @param string $key   The header name
+     * @param string $value The header value
+     */
+    public function setHeader($key, $value)
+    {
+        $this->defaultHeaders[$key] = $value;
     }
 
     /**

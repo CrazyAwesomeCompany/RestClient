@@ -95,6 +95,22 @@ class Request
     }
 
     /**
+     * Get a single header data
+     *
+     * @param string $key The header name
+     *
+     * @return string The header value or NULL when header cannot be found
+     */
+    public function getHeader($key)
+    {
+        if (array_key_exists($key, $this->headers)) {
+            return $this->headers[$key];
+        }
+
+        return null;
+    }
+
+    /**
      * Set the request method
      *
      * @param string $method
