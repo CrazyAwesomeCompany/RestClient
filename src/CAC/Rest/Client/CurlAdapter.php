@@ -63,8 +63,12 @@ class CurlAdapter extends ClientAdapter
                 $params = $this->encode($params, $request->getHeader('content-type'));
             }
 
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-            $request->setHeader('content-length', strlen($params));
+            if ($request->getMethod() == Request::GET) {
+                curl_setopt($ch, CURLOPT_URL, $request->getUrl() . '?' . $params);
+            } else {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                $request->setHeader('content-length', strlen($params));
+            }
         }
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $request->getHeaders());
