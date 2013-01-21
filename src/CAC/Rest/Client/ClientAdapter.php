@@ -72,11 +72,15 @@ abstract class ClientAdapter
             case 'json':
             case 'application/json':
             case 'application/json;charset=utf-8':
-                $data = json_decode($data, true);
-                break;
+                $res = json_decode(utf8_encode($data), true);
+                error_log($res);
+                if ($res === null && json_last_error() !== JSON_ERROR_NONE) {
+                    error_log('Error with json decode');
+                    $res = $data;
+                }
         }
 
-        return $data;
+        return $res;
     }
 
 }
